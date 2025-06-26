@@ -41,8 +41,8 @@ const PageFlow: FC<Props> = ({
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        delay: 150, // Wait 150ms before activating
-        tolerance: 4, // Allow small movement without triggering
+        delay: 150,
+        tolerance: 4,
       },
     }),
     useSensor(KeyboardSensor)
