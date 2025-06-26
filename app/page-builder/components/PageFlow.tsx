@@ -39,7 +39,12 @@ const PageFlow: FC<Props> = ({
   setActivePageId,
 }) => {
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 150, // Wait 150ms before activating
+        tolerance: 4, // Allow small movement without triggering
+      },
+    }),
     useSensor(KeyboardSensor)
   );
 
