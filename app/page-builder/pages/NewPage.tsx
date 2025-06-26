@@ -2,16 +2,18 @@ import React from "react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import InputField from "../components/InputField";
 
-export default function DetailsPage() {
+export default function NewPage() {
   return (
-    <div className="space-y-6 max-w-lg">
-      <h2 className="text-xl font-semibold text-indigo-800">Details Page</h2>
-      <p className="text-gray-700">
-        This is a placeholder for the Details form step. Add your fields here.
+    <div className="space-y-8 max-w-xl">
+      <h1 className="text-2xl font-bold text-indigo-800">
+        Welcome to the New Page
+      </h1>
+      <p className="text-gray-600 italic">
+        Explore the possibilities with your own inputs. Customize as needed.
       </p>
 
       <InputField
-        label="What is your name?"
+        label="Your Name"
         icon={
           <svg
             className="h-5 w-5 text-indigo-500"
@@ -29,23 +31,23 @@ export default function DetailsPage() {
           </svg>
         }
         type="text"
-        placeholder="John Doe"
+        placeholder="Enter your name"
         required
       />
 
       <InputField
-        label="What is your email?"
+        label="Email Address"
         icon={<EnvelopeIcon className="h-5 w-5 text-indigo-500" />}
         type="email"
-        placeholder="you@example.com"
+        placeholder="Enter your email"
         required
       />
 
       <InputField
-        label="What is your phone number?"
+        label="Phone Number"
         icon={<PhoneIcon className="h-5 w-5 text-indigo-500" />}
         type="tel"
-        placeholder="+1 (555) 123-4567"
+        placeholder="Enter your phone number"
         required
       />
     </div>

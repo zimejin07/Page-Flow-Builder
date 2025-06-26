@@ -6,7 +6,7 @@ import InputField from "../components/InputField";
 export default function InfoPage() {
   return (
     <div className="space-y-6 max-w-lg">
-      <h2 className="text-xl font-semibold">
+      <h2 className="text-xl font-semibold text-indigo-800">
         Sign up for the Weekly Newsletter
       </h2>
       <p className="text-gray-700">
@@ -15,7 +15,7 @@ export default function InfoPage() {
 
       <InputField
         label="What is your email?"
-        icon={<EnvelopeIcon className="h-5 w-5" />}
+        icon={<EnvelopeIcon className="h-5 w-5 text-indigo-500" />}
         type="email"
         placeholder="you@example.com"
         required
@@ -23,7 +23,7 @@ export default function InfoPage() {
 
       <InputField
         label="What is your phone number?"
-        icon={<PhoneIcon className="h-5 w-5" />}
+        icon={<PhoneIcon className="h-5 w-5 text-indigo-500" />}
         type="tel"
         placeholder="+1 (555) 123-4567"
         required

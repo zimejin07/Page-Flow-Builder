@@ -14,12 +14,14 @@ import {
   InformationCircleIcon,
   PhoneIcon,
 } from "@heroicons/react/24/outline";
+import NewPage from "./page-builder/pages/NewPage";
 
 const pageComponents: Record<string, JSX.Element> = {
   Info: <Info />,
   Details: <Details />,
   Other: <Other />,
   Ending: <Ending />,
+  "New Page": <NewPage />,
 };
 
 export default function PageBuilder() {
@@ -60,8 +62,7 @@ export default function PageBuilder() {
 
   return (
     <main className="min-h-screen bg-neutral-900 text-white p-10 flex flex-col gap-6">
-      
-      <div className="bg-white rounded-md p-6 mb-6 text-black shadow transition-opacity duration-300 animate-fade">
+      <div className="justify-items-center bg-white rounded-md p-6 mb-6 text-black shadow transition-opacity duration-300 animate-fade">
         {ActiveComponent ?? <p>No page selected</p>}
       </div>
 
