@@ -7,6 +7,9 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  DragStartEvent,
+  DragEndEvent,
+  DragOverlay,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -16,7 +19,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Page } from "../page.model";
-import { FC } from "react";
+import { FC, useState } from "react";
 import PageItem from "./PageItem";
 import { AddPageButton } from "./AddPageButton";
 import { v4 } from "uuid";
@@ -34,17 +37,24 @@ const PageFlow: FC<Props> = ({
   activePageId,
   setActivePageId,
 }) => {
-
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor)
   );
 
-  const handleDragEnd = (event: any) => {
+  const [draggedPageId, setDraggedPageId] = useState<string | null>(null);
+
+  const handleDragStart = (event: DragStartEvent) => {
+    setDraggedPageId(event.active.id as string);
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    if (active.id !== over.id) {
+    setDraggedPageId(null);
+
+    if (active.id !== over?.id) {
       const oldIndex = pages.findIndex((p) => p.id === active.id);
-      const newIndex = pages.findIndex((p) => p.id === over.id);
+      const newIndex = pages.findIndex((p) => p.id === over?.id);
       setPages(arrayMove(pages, oldIndex, newIndex));
     }
   };
@@ -53,6 +63,7 @@ const PageFlow: FC<Props> = ({
     <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
       <SortableContext
@@ -90,6 +101,15 @@ const PageFlow: FC<Props> = ({
           </button>
         </div>
       </SortableContext>
+
+      {/* Drag Preview */}
+      <DragOverlay>
+        {draggedPageId ? (
+          <div className="px-3 py-1.5 rounded-md bg-blue-100 border border-blue-400 text-blue-900 shadow-md text-sm">
+            {pages.find((p) => p.id === draggedPageId)?.title}
+          </div>
+        ) : null}
+      </DragOverlay>
     </DndContext>
   );
 };

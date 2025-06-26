@@ -4,7 +4,10 @@ import { FC } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { DocumentIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import {
+  DocumentIcon,
+  EllipsisVerticalIcon,
+} from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
 
@@ -41,7 +44,7 @@ const PageItem: FC<Props> = ({ page, focus, onClick }) => {
         "transition-all duration-300 ease-in-out transform-gpu animate-fade-in",
         {
           "border-blue-500 bg-blue-50 text-blue-900 font-medium": focus,
-          "border-gray-300 bg-white text-gray-800 hover:bg-gray-100": !focus,
+          "border-gray-200 bg-gray-50 text-gray-800 hover:bg-gray-100": !focus,
           "opacity-50 scale-95": isDragging,
         }
       )}
