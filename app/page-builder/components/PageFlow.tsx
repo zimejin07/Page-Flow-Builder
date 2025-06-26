@@ -34,6 +34,7 @@ const PageFlow: FC<Props> = ({
   activePageId,
   setActivePageId,
 }) => {
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor)
@@ -63,7 +64,7 @@ const PageFlow: FC<Props> = ({
             <div key={page.id} className="flex items-center gap-2">
               <PageItem
                 page={page}
-                active={page.id === activePageId}
+                focus={page.id === activePageId}
                 onClick={() => setActivePageId(page.id)}
               />
               {i < pages.length - 1 && (

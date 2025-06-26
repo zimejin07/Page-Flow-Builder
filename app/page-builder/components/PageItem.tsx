@@ -1,25 +1,33 @@
-'use client'
+"use client";
 
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-import { Page } from '../page.model'
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { FC } from 'react'
-import { EllipsisVerticalIcon } from '@heroicons/react/24/outline'
+import { FC } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
+import { Page } from "../page.model";
 
 type Props = {
-  page: Page
-  active: boolean
-  onClick: () => void
-}
+  page: Page;
+  focus: boolean;
+  onClick: () => void;
+};
 
-const PageItem: FC<Props> = ({ page, active, onClick }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: page.id })
+const PageItem: FC<Props> = ({ page, focus, onClick }) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: page.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-  }
+  };
 
   return (
     <div
@@ -28,39 +36,43 @@ const PageItem: FC<Props> = ({ page, active, onClick }) => {
       {...attributes}
       {...listeners}
       onClick={onClick}
-      className={`flex items-center gap-2 px-3 py-1.5 rounded-md border transition-all duration-150 cursor-pointer
-    ${
-      active
-        ? "border-blue-500 bg-blue-50 text-blue-900 font-medium"
-        : "border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
-    }
-  `}
+      className={clsx(
+        "flex items-center gap-2 px-3 py-1.5 rounded-md border cursor-pointer",
+        "transition-all duration-300 ease-in-out transform-gpu animate-fade-in",
+        {
+          "border-blue-500 bg-blue-50 text-blue-900 font-medium": focus,
+          "border-gray-300 bg-white text-gray-800 hover:bg-gray-100": !focus,
+          "opacity-50 scale-95": isDragging,
+        }
+      )}
     >
-      <span>{page.title}</span>
+      <span className="text-sm truncate max-w-[100px]">{page.title}</span>
 
-      <Menu as="div" className="relative inline-block text-left">
-        <MenuButton className="ml-1">
-          <EllipsisVerticalIcon className="h-4 w-4 text-gray-500 hover:text-gray-700" />
+      <Menu as="div" className="relative ml-auto">
+        <MenuButton>
+          <EllipsisVerticalIcon className="h-4 w-4 text-gray-400 hover:text-gray-600" />
         </MenuButton>
-        <MenuItems className="absolute z-10 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-1 py-1">
+        <MenuItems className="absolute right-0 mt-2 w-36 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+          <div className="px-1 py-1 text-sm text-gray-800">
             <MenuItem>
               {({ focus }) => (
-                <button className="menu-btn">Set as first page</button>
+                <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                  Rename
+                </button>
               )}
             </MenuItem>
             <MenuItem>
-              {({ focus }) => <button className="menu-btn">Rename</button>}
-            </MenuItem>
-            <MenuItem>
-              {({ focus }) => <button className="menu-btn">Copy</button>}
-            </MenuItem>
-            <MenuItem>
-              {({ focus }) => <button className="menu-btn">Duplicate</button>}
+              {({ focus }) => (
+                <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                  Duplicate
+                </button>
+              )}
             </MenuItem>
             <MenuItem>
               {({ focus }) => (
-                <button className="menu-btn text-red-600">Delete</button>
+                <button className="w-full text-left px-2 py-1 text-red-600 hover:bg-red-50 rounded">
+                  Delete
+                </button>
               )}
             </MenuItem>
           </div>
@@ -68,6 +80,6 @@ const PageItem: FC<Props> = ({ page, active, onClick }) => {
       </Menu>
     </div>
   );
-}
+};
 
-export default PageItem
+export default PageItem;
