@@ -4,7 +4,7 @@ import { FC } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import { DocumentIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
 
@@ -46,6 +46,10 @@ const PageItem: FC<Props> = ({ page, focus, onClick }) => {
         }
       )}
     >
+      <div className="text-gray-500">
+        {page.icon ?? <DocumentIcon className="h-4 w-4" />}
+      </div>
+
       <span className="text-sm truncate max-w-[100px]">{page.title}</span>
 
       <Menu as="div" className="relative ml-auto">
