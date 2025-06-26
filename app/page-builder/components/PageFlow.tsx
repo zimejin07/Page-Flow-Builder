@@ -23,6 +23,7 @@ import { FC, useState } from "react";
 import PageItem from "./PageItem";
 import { AddPageButton } from "./AddPageButton";
 import { v4 } from "uuid";
+import PageItemGhost from "./PageItemGhost";
 
 type Props = {
   pages: Page[];
@@ -105,9 +106,7 @@ const PageFlow: FC<Props> = ({
       {/* Drag Preview */}
       <DragOverlay>
         {draggedPageId ? (
-          <div className="px-3 py-1.5 rounded-md bg-blue-100 border border-blue-400 text-blue-900 shadow-md text-sm">
-            {pages.find((p) => p.id === draggedPageId)?.title}
-          </div>
+          <PageItemGhost page={pages.find((p) => p.id === draggedPageId)!} />
         ) : null}
       </DragOverlay>
     </DndContext>
