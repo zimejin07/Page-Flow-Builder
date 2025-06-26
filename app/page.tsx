@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import PageFlow from "./components/PageFlow";
-import { Page } from "./page.model";
+import PageFlow from "./page-builder/components/PageFlow";
+import { Page } from "./page-builder/page.model";
 
 const defaultPages: Page[] = [
   { id: uuidv4(), title: "Info" },

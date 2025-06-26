@@ -19,7 +19,7 @@ import { Page } from "../page.model";
 import { FC } from "react";
 import PageItem from "./PageItem";
 import { AddPageButton } from "./AddPageButton";
-import { uuid } from "uuidv4";
+import { v4 } from "uuid";
 
 type Props = {
   pages: Page[];
@@ -69,7 +69,7 @@ const PageFlow: FC<Props> = ({
               {i < pages.length - 1 && (
                 <AddPageButton
                   onClick={() => {
-                    const newPage = { id: uuid(), title: "New Page" };
+                    const newPage = { id: v4(), title: "New Page" };
                     const newPages = [...pages];
                     newPages.splice(i + 1, 0, newPage);
                     setPages(newPages);
@@ -81,7 +81,7 @@ const PageFlow: FC<Props> = ({
           <button
             className="ml-2 bg-gray-100 text-black px-3 py-1 rounded hover:bg-gray-200 transition"
             onClick={() => {
-              const newPage = { id: uuid(), title: "New Page" };
+              const newPage = { id: v4(), title: "New Page" };
               setPages([...pages, newPage]);
             }}
           >
