@@ -2,7 +2,9 @@
 
 A production-ready, open-source form page navigation builder — inspired by [Fillout](https://www.fillout.com) — featuring drag-and-drop editing, inline page management, and persistent state. Built with **Next.js 14**, **React 18**, and **Tailwind CSS**.
 
-![Screenshot](./screenshot.png)
+<p align="center">
+  <img src="/public/preview.png" alt="App Preview" width="300" />
+</p>
 
 ---
 
@@ -39,6 +41,21 @@ A production-ready, open-source form page navigation builder — inspired by [Fi
 
 ---
 
+## 📊 Status Overview
+
+| Category                  | Status   |
+|---------------------------|----------|
+| 🧱 Feature Implementation | ✅ Complete |
+| 💾 LocalStorage Support   | ✅ Stable   |
+| 🧩 Component Behavior     | ✅ Tested   |
+| 🔁 Drag & Drop Flow       | ✅ Verified |
+| ✍️ Inline Rename          | ✅ Working  |
+| 📦 Deployment Config      | ✅ Ready (Vercel + Docker) |
+| 🧪 Unit + Integration Tests | ✅ Passing |
+| 🧪 Test Environment Setup   | ✅ Finalized |
+
+---
+
 ## 🛠 Tech Stack
 
 - **Next.js 14 App Router**
@@ -62,23 +79,27 @@ npm run dev
 
 # Open in browser
 http://localhost:3000
+```
 
+### 🐳 Docker Support
 
-🐳 Docker Support
-
+```bash
 # Build Docker image
 docker build -t form-page-builder .
 
 # Run Docker container
 docker run -p 3000:3000 form-page-builder
+```
 
-Access the app at: http://localhost:3000
+Access the app at: [http://localhost:3000](http://localhost:3000)
 
-🌐 Live Demo
+### 🌐 Live Demo
 
-https://your-vercel-deployment-url.vercel.app
-📁 Project Structure
+Visit: [Live Demo URL](https://your-vercel-deployment-url.vercel.app)
 
+### 📁 Project Structure
+
+```
 app/
   page.tsx                  # Root entry page
   page-builder/
@@ -87,3 +108,6 @@ app/
     page.model.ts           # Page model/type definitions
 public/
   screenshot.png            # Optional UI screenshot
+```
+
+---
