@@ -2,10 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "app/page.tsx",
+      "src": "package.json",
       "use": "@vercel/next"
     }
   ],
+  "cleanUrls": true,
+  "trailingSlash": false,
   "routes": [
     {
       "src": "/(.*)",
