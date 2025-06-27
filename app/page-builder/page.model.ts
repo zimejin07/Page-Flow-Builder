@@ -1,8 +1,14 @@
-import { JSX } from "react"
+export type PageType =
+  | "Info"
+  | "Details"
+  | "Other"
+  | "Ending"
+  | "newPageType"
+  | string;
 
 export type Page = {
-    id: string
-    title: string
-    isFirst?: boolean
-    icon?: JSX.Element 
-}
+  id: string;
+  title: string;
+  type: PageType;
+  iconName?: string;
+};

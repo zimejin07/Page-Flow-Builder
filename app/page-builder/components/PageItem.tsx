@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
+import { iconMap } from "../utils/utils";
 
 type Props = {
   page: Page;
@@ -32,6 +33,18 @@ const PageItem: FC<Props> = ({ page, focus, onClick }) => {
     transition,
   };
 
+  const [editing, setEditing] = useState(false);
+  const [tempTitle, setTempTitle] = useState(page.title);
+
+  const handleRename = () => {
+    setEditing(false);
+    if (tempTitle.trim() !== "") {
+      page.title = tempTitle.trim();
+    } else {
+      setTempTitle(page.title);
+    }
+  };
+
   return (
     <div
       ref={setNodeRef}
@@ -49,11 +62,28 @@ const PageItem: FC<Props> = ({ page, focus, onClick }) => {
         }
       )}
     >
-      <div className="text-gray-500">
-        {page.icon ?? <DocumentIcon className="h-4 w-4" />}
-      </div>
+      <div className="text-gray-500">{iconMap[page.iconName ?? "doc"]}</div>
 
-      <span className="text-sm truncate max-w-[100px]">{page.title}</span>
+      {editing ? (
+        <input
+          autoFocus
+          value={tempTitle}
+          onChange={(e) => setTempTitle(e.target.value)}
+          onBlur={handleRename}
+          onKeyDown={(e) => e.key === "Enter" && handleRename()}
+          className="text-sm border border-blue-300 rounded px-1 py-0.5 w-[100px]"
+        />
+      ) : (
+        <span
+          className="text-sm truncate max-w-[100px]"
+          onDoubleClick={(e) => {
+            e.stopPropagation();
+            setEditing(true);
+          }}
+        >
+          {page.title}
+        </span>
+      )}
 
       <Menu as="div" className="relative ml-auto">
         <MenuButton>

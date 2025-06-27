@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   DndContext,
@@ -10,27 +10,28 @@ import {
   DragStartEvent,
   DragEndEvent,
   DragOverlay,
-} from "@dnd-kit/core";
+} from '@dnd-kit/core'
 import {
   arrayMove,
   SortableContext,
-  useSortable,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { Page } from "../page.model";
-import { FC, useState } from "react";
-import PageItem from "./PageItem";
-import { AddPageButton } from "./AddPageButton";
-import { v4 } from "uuid";
-import PageItemGhost from "./PageItemGhost";
+} from '@dnd-kit/sortable'
+import { Page } from '../page.model'
+import { FC, useState } from 'react'
+import PageItem from './PageItem'
+import { AddPageButton } from './AddPageButton'
+import { v4 as uuidv4 } from 'uuid'
+import PageItemGhost from './PageItemGhost'
+import { generateUniquePageType } from '../utils/utils'
 
 type Props = {
-  pages: Page[];
-  setPages: (pages: Page[]) => void;
-  activePageId: string;
-  setActivePageId: (id: string) => void;
-};
+  pages: Page[]
+  setPages: (pages: Page[]) => void
+  activePageId: string
+  setActivePageId: (id: string) => void
+}
+
+const MAX_PAGES = 6
 
 const PageFlow: FC<Props> = ({
   pages,
@@ -46,24 +47,49 @@ const PageFlow: FC<Props> = ({
       },
     }),
     useSensor(KeyboardSensor)
-  );
+  )
 
-  const [draggedPageId, setDraggedPageId] = useState<string | null>(null);
+  const [draggedPageId, setDraggedPageId] = useState<string | null>(null)
 
   const handleDragStart = (event: DragStartEvent) => {
-    setDraggedPageId(event.active.id as string);
-  };
+    setDraggedPageId(event.active.id as string)
+  }
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-    setDraggedPageId(null);
+    const { active, over } = event
+    setDraggedPageId(null)
 
     if (active.id !== over?.id) {
-      const oldIndex = pages.findIndex((p) => p.id === active.id);
-      const newIndex = pages.findIndex((p) => p.id === over?.id);
-      setPages(arrayMove(pages, oldIndex, newIndex));
+      const oldIndex = pages.findIndex((p) => p.id === active.id)
+      const newIndex = pages.findIndex((p) => p.id === over?.id)
+      setPages(arrayMove(pages, oldIndex, newIndex))
     }
-  };
+  }
+
+  const addNewPageAt = (index: number | 'end') => {
+    if (pages.length >= MAX_PAGES) {
+      alert('Maximum of 6 pages reached.')
+      return
+    }
+
+    const newType = generateUniquePageType(pages)
+
+    const newPage: Page = {
+      id: uuidv4(),
+      title: 'New Page',
+      type: newType,
+      iconName: 'default',
+    }
+
+    const newPages = [...pages]
+    if (index === 'end') {
+      newPages.push(newPage)
+    } else {
+      newPages.splice(index + 1, 0, newPage)
+    }
+
+    setPages(newPages)
+  }
 
   return (
     <DndContext
@@ -76,7 +102,7 @@ const PageFlow: FC<Props> = ({
         items={pages.map((p) => p.id)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="flex items-center gap-2 bg-white rounded-lg p-3">
+        <div className="flex items-center gap-2 bg-white rounded-lg p-3 overflow-x-auto">
           {pages.map((page, i) => (
             <div key={page.id} className="flex items-center gap-2">
               <PageItem
@@ -85,37 +111,27 @@ const PageFlow: FC<Props> = ({
                 onClick={() => setActivePageId(page.id)}
               />
               {i < pages.length - 1 && (
-                <AddPageButton
-                  onClick={() => {
-                    const newPage = { id: v4(), title: "New Page" };
-                    const newPages = [...pages];
-                    newPages.splice(i + 1, 0, newPage);
-                    setPages(newPages);
-                  }}
-                />
+                <AddPageButton onClick={() => addNewPageAt(i)} />
               )}
             </div>
           ))}
+
           <button
-            className="ml-2 bg-gray-100 text-black px-3 py-1 rounded hover:bg-gray-200 transition"
-            onClick={() => {
-              const newPage = { id: v4(), title: "New Page" };
-              setPages([...pages, newPage]);
-            }}
+            className="ml-2 bg-gray-100 text-black px-3 py-1 rounded hover:bg-gray-200 transition text-sm"
+            onClick={() => addNewPageAt('end')}
           >
             + Add page
           </button>
         </div>
       </SortableContext>
 
-      {/* Drag Preview */}
       <DragOverlay>
         {draggedPageId ? (
           <PageItemGhost page={pages.find((p) => p.id === draggedPageId)!} />
         ) : null}
       </DragOverlay>
     </DndContext>
-  );
-};
+  )
+}
 
-export default PageFlow;
+export default PageFlow
