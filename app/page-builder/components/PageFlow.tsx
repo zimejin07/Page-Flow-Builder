@@ -101,7 +101,7 @@ const PageFlow: FC<Props> = ({
         items={pages.map((p) => p.id)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="flex items-center gap-2 bg-white rounded-lg p-3 overflow-x-auto">
+        <div className="flex items-center gap-2 bg-white rounded-lg p-3">
           {pages.map((page, i) => (
             <div key={page.id} className="flex items-center gap-2">
               <PageItem
