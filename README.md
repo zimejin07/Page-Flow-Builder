@@ -107,7 +107,7 @@ app/
     pages/                  # Renderable page components (Info.tsx, etc.)
     page.model.ts           # Page model/type definitions
 public/
-  screenshot.png            # Optional UI screenshot
+  screenshot.png            # UI screenshot
 ```
 
 ---
