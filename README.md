@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧱 Form Page Navigation Builder
 
-## Getting Started
+A production-ready, open-source form page navigation builder — inspired by [Fillout](https://www.fillout.com) — featuring drag-and-drop editing, inline page management, and persistent state. Built with **Next.js 14**, **React 18**, and **Tailwind CSS**.
 
-First, run the development server:
+![Screenshot](./screenshot.png)
+
+---
+
+## 🔍 Features
+
+- ✅ Multi-page form editor with Info, Details, and more
+- ✅ Reorder pages via drag-and-drop with visual overlays
+- ✅ Add new pages between existing ones via "+" button
+- ✅ Context menu per page (rename, duplicate, delete)
+- ✅ Inline renaming of page titles with validation
+- ✅ Active page highlighting and selection
+- ✅ Fallback rendering for unknown component types
+- ✅ Full mobile responsiveness with warnings for small screens
+- ✅ State management with optional `localStorage` persistence
+- ✅ Subtle UI animations and transitions for polish
+- ✅ Design fidelity to Figma specification
+
+---
+
+## ✅ Functional Coverage
+
+| Functionality            | Status | Notes                                 |
+|--------------------------|--------|---------------------------------------|
+| Page rendering defaults  | ✅     | 4 pages shown on first load           |
+| Page renaming            | ✅     | Live update; empty string reverts     |
+| Active page switching    | ✅     | Visual highlight + content switch     |
+| Invalid page type        | ✅     | Displays fallback message             |
+| Drag ordering            | ✅     | Smooth transitions with `@dnd-kit`    |
+| Insert new pages         | ✅     | "+" appears between existing items    |
+| Context menu             | ✅     | Built with `@headlessui/react`        |
+| Page limit enforced      | ✅     | Max of 6 pages                        |
+| Mobile error handling    | ✅     | Responsive warning displayed          |
+| Persistent state         | ✅     | Local memory and optional storage     |
+
+---
+
+## 🛠 Tech Stack
+
+- **Next.js 14 App Router**
+- **React 18**
+- **Tailwind CSS**
+- **@dnd-kit** for drag-and-drop
+- **@headlessui/react** for context menus
+- **Heroicons** for UI icons
+- **UUID** for page ID generation
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Open in browser
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🐳 Docker Support
 
-## Learn More
+# Build Docker image
+docker build -t form-page-builder .
 
-To learn more about Next.js, take a look at the following resources:
+# Run Docker container
+docker run -p 3000:3000 form-page-builder
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Access the app at: http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🌐 Live Demo
 
-## Deploy on Vercel
+https://your-vercel-deployment-url.vercel.app
+📁 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+app/
+  page.tsx                  # Root entry page
+  page-builder/
+    components/             # UI Components (PageItem, AddButton, etc.)
+    pages/                  # Renderable page components (Info.tsx, etc.)
+    page.model.ts           # Page model/type definitions
+public/
+  screenshot.png            # Optional UI screenshot

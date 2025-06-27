@@ -78,7 +78,6 @@ const PageFlow: FC<Props> = ({
       id: uuidv4(),
       title: 'New Page',
       type: newType,
-      iconName: 'default',
     }
 
     const newPages = [...pages]

@@ -5,7 +5,6 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
-  DocumentIcon,
   EllipsisVerticalIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";

@@ -34,19 +34,19 @@ export default function PageBuilder() {
         id: uuidv4(),
         title: "Details",
         type: "Details",
-        iconName: "details",
+        iconName: "phone",
       },
       {
         id: uuidv4(),
         title: "Other",
         type: "Other",
-        iconName: "other",
+        iconName: "doc",
       },
       {
         id: uuidv4(),
         title: "Ending",
         type: "Ending",
-        iconName: "ending",
+        iconName: "end",
       },
     ];
 
