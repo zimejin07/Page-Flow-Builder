@@ -17,7 +17,7 @@ export default function DismissibleTip() {
         <XMarkIcon className="h-4 w-4" />
       </button>
       <p className="text-sm">
-        💡 <strong>Tip:</strong> You can drag pages to reorder or use the "+"
+        💡 <strong>Tip:</strong> You can drag pages to reorder or use the &quot;+&quot;
         icon to insert a new one.
       </p>
     </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import InputField from "../components/InputField";
 
 export default function EndingPage() {

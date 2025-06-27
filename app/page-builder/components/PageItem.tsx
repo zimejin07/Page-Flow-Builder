@@ -4,9 +4,7 @@ import { FC, useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import {
-  EllipsisVerticalIcon,
-} from "@heroicons/react/24/outline";
+import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
 import { iconMap } from "../utils/utils";
@@ -91,21 +89,21 @@ const PageItem: FC<Props> = ({ page, focus, onClick }) => {
         <MenuItems className="absolute right-0 mt-2 w-36 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
           <div className="px-1 py-1 text-sm text-gray-800">
             <MenuItem>
-              {({ focus }) => (
+              {() => (
                 <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
                   Rename
                 </button>
               )}
             </MenuItem>
             <MenuItem>
-              {({ focus }) => (
+              {() => (
                 <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
                   Duplicate
                 </button>
               )}
             </MenuItem>
             <MenuItem>
-              {({ focus }) => (
+              {() => (
                 <button className="w-full text-left px-2 py-1 text-red-600 hover:bg-red-50 rounded">
                   Delete
                 </button>
