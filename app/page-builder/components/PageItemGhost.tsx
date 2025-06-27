@@ -17,7 +17,7 @@ const PageItemGhost: FC<Props> = ({ page }) => {
         'transition-all duration-150'
       )}
     >
-      <div className="text-blue-500">{page.icon}</div>
+      <div className="text-blue-500">{page.iconName}</div>
       <span className="truncate max-w-[100px]">{page.title}</span>
     </div>
   )
