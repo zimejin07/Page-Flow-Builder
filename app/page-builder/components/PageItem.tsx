@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react'
 import { FC, useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";

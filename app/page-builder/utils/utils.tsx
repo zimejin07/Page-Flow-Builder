@@ -1,3 +1,4 @@
+import React from 'react'
 import { JSX } from "react";
 import { Page } from "../page.model";
 import {
