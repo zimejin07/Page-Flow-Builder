@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import React from "react";
 import { FC, useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -9,14 +9,16 @@ import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
 import { iconMap } from "../utils/utils";
+import { AnimatePresence, motion } from 'framer-motion'
 
 type Props = {
   page: Page;
   focus: boolean;
   onClick: () => void;
+  onDelete: () => void;
 };
 
-const PageItem: FC<Props> = ({ page, focus, onClick }) => {
+const PageItem: FC<Props> = ({ page, focus, onClick, onDelete }) => {
   const {
     attributes,
     listeners,
@@ -104,8 +106,14 @@ const PageItem: FC<Props> = ({ page, focus, onClick }) => {
               )}
             </MenuItem>
             <MenuItem>
-              {() => (
-                <button className="w-full text-left px-2 py-1 text-red-600 hover:bg-red-50 rounded">
+              {({ focus }) => (
+                <button
+                  className="w-full text-left px-2 py-1 text-red-600 hover:bg-red-50 rounded"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete();
+                  }}
+                >
                   Delete
                 </button>
               )}

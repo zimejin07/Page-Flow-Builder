@@ -23,6 +23,7 @@ import { AddPageButton } from "./AddPageButton";
 import { v4 as uuidv4 } from "uuid";
 import PageItemGhost from "./PageItemGhost";
 import { generateUniquePageType } from "../utils/utils";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
   pages: Page[];
@@ -90,6 +91,24 @@ const PageFlow: FC<Props> = ({
     setPages(newPages);
   };
 
+  const handleDeletePage = (idToDelete: string) => {
+    if (!confirm("Are you sure you want to delete this page?")) {
+      return;
+    }
+    if (pages.length === 1) {
+      alert("At least one page must remain.");
+      return;
+    }
+
+    const filtered = pages.filter((p) => p.id !== idToDelete);
+    setPages(filtered);
+
+    // If deleted page was active, switch to another
+    if (idToDelete === activePageId) {
+      setActivePageId(filtered[0].id);
+    }
+  };
+
   return (
     <DndContext
       sensors={sensors}
@@ -102,25 +121,38 @@ const PageFlow: FC<Props> = ({
         strategy={verticalListSortingStrategy}
       >
         <div className="flex items-center gap-2 bg-white rounded-lg p-3">
-          {pages.map((page, i) => (
-            <div key={page.id} className="flex items-center gap-2">
-              <PageItem
-                page={page}
-                focus={page.id === activePageId}
-                onClick={() => setActivePageId(page.id)}
-              />
-              {i < pages.length - 1 && (
-                <AddPageButton onClick={() => addNewPageAt(i)} />
-              )}
-            </div>
-          ))}
+          <AnimatePresence initial={false}>
+            {pages.map((page, i) => (
+              <motion.div
+                key={page.id}
+                layout
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-2"
+              >
+                <PageItem
+                  page={page}
+                  focus={page.id === activePageId}
+                  onClick={() => setActivePageId(page.id)}
+                  onDelete={() => handleDeletePage(page.id)}
+                />
 
-          <button
+                {i < pages.length - 1 && (
+                  <AddPageButton onClick={() => addNewPageAt(i)} />
+                )}
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             className="ml-2 bg-gray-100 text-black px-3 py-1 rounded hover:bg-gray-200 transition text-sm"
             onClick={() => addNewPageAt("end")}
           >
             + Add page
-          </button>
+          </motion.button>
         </div>
       </SortableContext>
 
