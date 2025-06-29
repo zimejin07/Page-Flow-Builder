@@ -1,4 +1,4 @@
-export async function suggestPageTitle(_: string): Promise<string> {
+export async function suggestPageTitle(): Promise<string> {
   await new Promise((resolve) => setTimeout(resolve, 200)); // simulate latency
 
   const mockSuggestions = [

@@ -81,7 +81,7 @@ const PageItem: FC<Props> = ({ page, focus, onClick, onDelete }) => {
             setEditing(true);
             // If it's a default page, enhance with AI
             if (page.title === "New Page") {
-              const suggestion = await suggestPageTitle("form step");
+              const suggestion = await suggestPageTitle();
               if (suggestion) setTempTitle(suggestion);
             }
           }}
