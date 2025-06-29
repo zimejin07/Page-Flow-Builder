@@ -1,5 +1,5 @@
-'use client'
-
+"use client";
+import React from "react";
 import {
   DndContext,
   closestCenter,
@@ -10,28 +10,28 @@ import {
   DragStartEvent,
   DragEndEvent,
   DragOverlay,
-} from '@dnd-kit/core'
+} from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
-import { Page } from '../page.model'
-import { FC, useState } from 'react'
-import PageItem from './PageItem'
-import { AddPageButton } from './AddPageButton'
-import { v4 as uuidv4 } from 'uuid'
-import PageItemGhost from './PageItemGhost'
-import { generateUniquePageType } from '../utils/utils'
+} from "@dnd-kit/sortable";
+import { Page } from "../page.model";
+import { FC, useState } from "react";
+import PageItem from "./PageItem";
+import { AddPageButton } from "./AddPageButton";
+import { v4 as uuidv4 } from "uuid";
+import PageItemGhost from "./PageItemGhost";
+import { generateUniquePageType } from "../utils/utils";
 
 type Props = {
-  pages: Page[]
-  setPages: (pages: Page[]) => void
-  activePageId: string
-  setActivePageId: (id: string) => void
-}
+  pages: Page[];
+  setPages: (pages: Page[]) => void;
+  activePageId: string;
+  setActivePageId: (id: string) => void;
+};
 
-const MAX_PAGES = 6
+const MAX_PAGES = 6;
 
 const PageFlow: FC<Props> = ({
   pages,
@@ -47,48 +47,48 @@ const PageFlow: FC<Props> = ({
       },
     }),
     useSensor(KeyboardSensor)
-  )
+  );
 
-  const [draggedPageId, setDraggedPageId] = useState<string | null>(null)
+  const [draggedPageId, setDraggedPageId] = useState<string | null>(null);
 
   const handleDragStart = (event: DragStartEvent) => {
-    setDraggedPageId(event.active.id as string)
-  }
+    setDraggedPageId(event.active.id as string);
+  };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event
-    setDraggedPageId(null)
+    const { active, over } = event;
+    setDraggedPageId(null);
 
     if (active.id !== over?.id) {
-      const oldIndex = pages.findIndex((p) => p.id === active.id)
-      const newIndex = pages.findIndex((p) => p.id === over?.id)
-      setPages(arrayMove(pages, oldIndex, newIndex))
+      const oldIndex = pages.findIndex((p) => p.id === active.id);
+      const newIndex = pages.findIndex((p) => p.id === over?.id);
+      setPages(arrayMove(pages, oldIndex, newIndex));
     }
-  }
+  };
 
-  const addNewPageAt = (index: number | 'end') => {
+  const addNewPageAt = (index: number | "end") => {
     if (pages.length >= MAX_PAGES) {
-      alert('Maximum of 6 pages reached.')
-      return
+      alert("Maximum of 6 pages reached.");
+      return;
     }
 
-    const newType = generateUniquePageType(pages)
+    const newType = generateUniquePageType(pages);
 
     const newPage: Page = {
       id: uuidv4(),
-      title: 'New Page',
+      title: "New Page",
       type: newType,
-    }
+    };
 
-    const newPages = [...pages]
-    if (index === 'end') {
-      newPages.push(newPage)
+    const newPages = [...pages];
+    if (index === "end") {
+      newPages.push(newPage);
     } else {
-      newPages.splice(index + 1, 0, newPage)
+      newPages.splice(index + 1, 0, newPage);
     }
 
-    setPages(newPages)
-  }
+    setPages(newPages);
+  };
 
   return (
     <DndContext
@@ -117,7 +117,7 @@ const PageFlow: FC<Props> = ({
 
           <button
             className="ml-2 bg-gray-100 text-black px-3 py-1 rounded hover:bg-gray-200 transition text-sm"
-            onClick={() => addNewPageAt('end')}
+            onClick={() => addNewPageAt("end")}
           >
             + Add page
           </button>
@@ -130,7 +130,7 @@ const PageFlow: FC<Props> = ({
         ) : null}
       </DragOverlay>
     </DndContext>
-  )
-}
+  );
+};
 
-export default PageFlow
+export default PageFlow;

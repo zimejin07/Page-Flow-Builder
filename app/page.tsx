@@ -78,8 +78,6 @@ export default function PageBuilder() {
 
   const activePage = pages.find((p) => p.id === activePageId);
 
-  console.log(activePage);
-
   const ActiveComponent = activePage?.type && pageComponents[activePage.type];
 
   const FallbackComponent = () => (
