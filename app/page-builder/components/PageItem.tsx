@@ -89,7 +89,7 @@ const PageItem: FC<Props> = ({ page, focus, onClick, onDelete }) => {
         <MenuButton>
           <EllipsisVerticalIcon className="h-4 w-4 text-gray-400 hover:text-gray-600" />
         </MenuButton>
-        <MenuItems className="absolute right-0 mt-2 w-36 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+        <MenuItems className="absolute bottom-0 left-0 mt-10 w-36 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
           <div className="px-1 py-1 text-sm text-gray-800">
             <MenuItem>
               {() => (
