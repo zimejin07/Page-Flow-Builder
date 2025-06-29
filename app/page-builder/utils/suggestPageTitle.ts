@@ -1,21 +1,19 @@
-export async function suggestPageTitle(context: string): Promise<string> {
-  const res = await fetch("/api/ai-suggest", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ context }),
-  });
+export async function suggestPageTitle(_: string): Promise<string> {
+  await new Promise((resolve) => setTimeout(resolve, 200)); // simulate latency
 
-  const reader = res.body?.getReader();
-  const decoder = new TextDecoder();
-  let result = "";
+  const mockSuggestions = [
+    "Contact Info",
+    "User Details",
+    "About You",
+    "Finish Up",
+    "Confirmation",
+    "Preferences",
+    "Personal Info",
+    "Summary Page",
+    "Final Step",
+    "Additional Info",
+  ];
 
-  while (true) {
-    const { done, value } = await reader!.read();
-    if (done) break;
-    result += decoder.decode(value);
-  }
-
-  return result.trim();
+  const index = Math.floor(Math.random() * mockSuggestions.length);
+  return mockSuggestions[index];
 }
