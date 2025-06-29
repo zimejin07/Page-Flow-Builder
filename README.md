@@ -1,6 +1,6 @@
 # 🧱 Form Page Navigation Builder
 
-A production-ready, open-source form page navigation builder — inspired by [Fillout](https://www.fillout.com) — featuring drag-and-drop editing, inline page management, and persistent state. Built with **Next.js 14**, **React 18**, and **Tailwind CSS**.
+A production-ready, open-source form page navigation builder — inspired by [Fillout](https://www.fillout.com) — featuring drag-and-drop editing, inline page management, and persistent state. Built with **Next.js 15**, **React 19**, and **Tailwind CSS**.
 
 <p align="center">
   <img src="/public/preview.png" alt="App Preview" width="300" />
@@ -8,51 +8,55 @@ A production-ready, open-source form page navigation builder — inspired by [Fi
 
 ---
 
-## 🔍 Features
+🔍 Features
 
-- ✅ Multi-page form editor with Info, Details, and more
-- ✅ Reorder pages via drag-and-drop with visual overlays
-- ✅ Add new pages between existing ones via "+" button
-- ✅ Context menu per page (rename, duplicate, delete)
-- ✅ Inline renaming of page titles with validation
-- ✅ Active page highlighting and selection
-- ✅ Fallback rendering for unknown component types
-- ✅ Full mobile responsiveness with warnings for small screens
-- ✅ State management with optional `localStorage` persistence
-- ✅ Subtle UI animations and transitions for polish
-- ✅ Design fidelity to Figma specification
+    ✅ Multi-page form editor with Info, Details, and more
+    ✅ Reorder pages via drag-and-drop with visual overlays
+    ✅ Add new pages between existing ones via "+" button
+    ✅ Context menu per page (rename, duplicate, delete)
+    ✅ Inline renaming of page titles with validation
+    ✅ Smart AI-style title suggestion for new pages (mocked)
+    ✅ Page deletion with smooth animated transitions
+    ✅ Active page highlighting and selection
+    ✅ Fallback rendering for unknown component types
+    ✅ Full mobile responsiveness with warnings for small screens
+    ✅ State management with optional localStorage persistence
+    ✅ Subtle UI animations and transitions for polish
+    ✅ Design fidelity to Figma specification
 
 ---
 
 ## ✅ Functional Coverage
 
-| Functionality            | Status | Notes                                 |
-|--------------------------|--------|---------------------------------------|
-| Page rendering defaults  | ✅     | 4 pages shown on first load           |
-| Page renaming            | ✅     | Live update; empty string reverts     |
-| Active page switching    | ✅     | Visual highlight + content switch     |
-| Invalid page type        | ✅     | Displays fallback message             |
-| Drag ordering            | ✅     | Smooth transitions with `@dnd-kit`    |
-| Insert new pages         | ✅     | "+" appears between existing items    |
-| Context menu             | ✅     | Built with `@headlessui/react`        |
-| Page limit enforced      | ✅     | Max of 6 pages                        |
-| Mobile error handling    | ✅     | Responsive warning displayed          |
-| Persistent state         | ✅     | Local memory and optional storage     |
+| Functionality           | Status | Notes                              |
+| ----------------------- | ------ | ---------------------------------- |
+| Page rendering defaults | ✅     | 4 pages shown on first load        |
+| Page renaming           | ✅     | Live update; empty string reverts  |
+| Active page switching   | ✅     | Visual highlight + content switch  |
+| Invalid page type       | ✅     | Displays fallback message          |
+| Drag ordering           | ✅     | Smooth transitions with `@dnd-kit` |
+| Insert new pages        | ✅     | "+" appears between existing items |
+| Context menu            | ✅     | Built with `@headlessui/react`     |
+| Page limit enforced     | ✅     | Max of 6 pages                     |
+| Mobile error handling   | ✅     | Responsive warning displayed       |
+| Persistent state        | ✅     | Local memory and optional storage  |
 
 ---
 
 ## 📊 Status Overview
 
-| Category                  | Status   |
-|---------------------------|----------|
+| Category                  | Status      |
+| ------------------------- | ----------- |
 | 🧱 Feature Implementation | ✅ Complete |
 | 💾 LocalStorage Support   | ✅ Stable   |
 | 🧩 Component Behavior     | ✅ Tested   |
 | 🔁 Drag & Drop Flow       | ✅ Verified |
 | ✍️ Inline Rename          | ✅ Working  |
-| 📦 Deployment Config      | ✅ Ready (Vercel + Docker) |
+
+| 🧠 AI (Mocked) Integration ✅ Added
+| 📦 Deployment Config | ✅ Ready (Vercel + Docker) |
 | 🧪 Unit + Integration Tests | ✅ Passing |
-| 🧪 Test Environment Setup   | ✅ Finalized |
+| 🧪 Test Environment Setup | ✅ Finalized |
 
 ---
 
@@ -96,7 +100,6 @@ Access the app at: [http://localhost:3000](http://localhost:3000)
 ### 🌐 Live Demo
 
 Visit: [Live Demo URL](https://page-flow-builder.vercel.app/)
-
 
 ### 📁 Project Structure
 
