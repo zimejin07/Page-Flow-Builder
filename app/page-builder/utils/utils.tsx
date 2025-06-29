@@ -8,7 +8,7 @@ import {
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 
-export // ✅ Utility to generate unique page type (Custom1, Custom2...)
+export // Utility to generate unique page type (Custom1, Custom2...)
 const generateUniquePageType = (pages: Page[]): string => {
   const existingTypes = new Set(pages.map((p) => p.type));
   let i = 1;

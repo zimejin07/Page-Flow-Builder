@@ -9,7 +9,6 @@ import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
 import { iconMap } from "../utils/utils";
-import { AnimatePresence, motion } from 'framer-motion'
 
 type Props = {
   page: Page;
@@ -106,7 +105,7 @@ const PageItem: FC<Props> = ({ page, focus, onClick, onDelete }) => {
               )}
             </MenuItem>
             <MenuItem>
-              {({ focus }) => (
+              {() => (
                 <button
                   className="w-full text-left px-2 py-1 text-red-600 hover:bg-red-50 rounded"
                   onClick={(e) => {
