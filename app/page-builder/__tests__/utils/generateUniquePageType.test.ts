@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { Page } from "../../page.model";
-import { generateUniquePageType } from "../../utils/utils";
+import { generateUniquePageType } from "../../utils/generateUniquePageType";
 
 describe("generateUniquePageType", () => {
   it("returns Custom1 when no pages exist", () => {

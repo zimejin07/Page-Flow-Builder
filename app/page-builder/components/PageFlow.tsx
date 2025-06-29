@@ -22,7 +22,7 @@ import PageItem from "./PageItem";
 import { AddPageButton } from "./AddPageButton";
 import { v4 as uuidv4 } from "uuid";
 import PageItemGhost from "./PageItemGhost";
-import { generateUniquePageType } from "../utils/utils";
+import { generateUniquePageType } from "../utils/generateUniquePageType";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
@@ -51,7 +51,6 @@ const PageFlow: FC<Props> = ({
   );
 
   const [draggedPageId, setDraggedPageId] = useState<string | null>(null);
-
   const handleDragStart = (event: DragStartEvent) => {
     setDraggedPageId(event.active.id as string);
   };

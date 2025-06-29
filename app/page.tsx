@@ -91,19 +91,19 @@ export default function PageBuilder() {
         {ActiveComponent ? <ActiveComponent /> : <FallbackComponent />}
       </div>
 
+      {/* Tip */}
+      <div className="mt-auto mb-20 flex justify-center">
+        <DismissibleTip />
+      </div>
+
       {/* Navigation Flow */}
-      <div className="bg-white text-black p-4 rounded-lg shadow-md mb-6">
+      <div className="bg-white text-black p-4 rounded-lg shadow-md fixed bottom-0 left-0 right-0">
         <PageFlow
           pages={pages}
           setPages={setPages}
           activePageId={activePageId}
           setActivePageId={setActivePageId}
         />
-      </div>
-
-      {/* Tip */}
-      <div className="mt-auto flex justify-center">
-        <DismissibleTip />
       </div>
     </main>
   );

@@ -24,3 +24,4 @@ export const iconMap: Record<string, JSX.Element> = {
   phone: <PhoneIcon className="h-4 w-4" />,
   end: <CheckCircleIcon className="h-4 w-4" />,
 };
+

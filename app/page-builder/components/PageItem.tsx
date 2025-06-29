@@ -8,7 +8,8 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
-import { iconMap } from "../utils/utils";
+import { iconMap } from "../utils/generateUniquePageType";
+import { suggestPageTitle } from "../utils/suggestPageTitle";
 
 type Props = {
   page: Page;
