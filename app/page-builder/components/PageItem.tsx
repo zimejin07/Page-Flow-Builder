@@ -5,7 +5,12 @@ import { FC, useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import {
+  DocumentDuplicateIcon,
+  EllipsisVerticalIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { Page } from "../page.model";
 import { iconMap } from "../utils/generateUniquePageType";
@@ -105,22 +110,22 @@ const PageItem: FC<Props> = ({ page, focus, onClick, onDelete }) => {
           }}
           className="bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
-          <div className="px-1 py-1 text-sm text-gray-800">
+          <div className="px-1 py-1 text-sm text-gray-800 space-y-1">
             <MenuItem>
               {() => (
                 <button
-                  className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded"
                 >
+                  <PencilSquareIcon className="h-4 w-4 text-gray-500" />
                   Rename
                 </button>
               )}
             </MenuItem>
             <MenuItem>
               {() => (
-                <button className="w-full text-left px-2 py-1 hover:bg-gray-100 rounded">
+                <button className="w-full flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded">
+                  <DocumentDuplicateIcon className="h-4 w-4 text-gray-500" />
                   Duplicate
                 </button>
               )}
@@ -128,12 +133,13 @@ const PageItem: FC<Props> = ({ page, focus, onClick, onDelete }) => {
             <MenuItem>
               {() => (
                 <button
-                  className="w-full text-left px-2 py-1 text-red-600 hover:bg-red-50 rounded"
                   onClick={(e) => {
                     e.stopPropagation();
                     onDelete();
                   }}
+                  className="w-full flex items-center gap-2 px-2 py-1 text-red-600 hover:bg-red-50 rounded"
                 >
+                  <TrashIcon className="h-4 w-4 text-red-400" />
                   Delete
                 </button>
               )}
