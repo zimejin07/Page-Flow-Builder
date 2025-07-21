@@ -62,7 +62,7 @@ A production-ready, open-source form page navigation builder — inspired by [Fi
 
 ## 🛠 Tech Stack
 
-- **Next.js 14 App Router**
+- **Next.js 15 App Router**
 - **React 18**
 - **Tailwind CSS**
 - **@dnd-kit** for drag-and-drop
